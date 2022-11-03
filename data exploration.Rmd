@@ -10,12 +10,20 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+```{r}
+library(readxl)
+library(dplyr)
+```
 
 
 ```{r}
-library(readxl)
 data <- read_excel("referencetable06072022accessible.xlsx", 
-    sheet = "Table 8")
+    sheet = "Table 8", skip = 2)
 View(data)
+```
+
+```{r}
+data %>% rename(Year = ...2)
+
 ```
 
