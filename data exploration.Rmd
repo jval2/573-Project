@@ -23,3 +23,24 @@ hist(data$`Count of Deaths`)
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
