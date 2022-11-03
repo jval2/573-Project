@@ -1,0 +1,21 @@
+---
+title: "Data exploration"
+author: "Justin, Ian, Travis"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+```{r}
+library(readxl)
+data <- read_excel("referencetable06072022accessible.xlsx", 
+    sheet = "Table 8")
+View(data)
+```
+
