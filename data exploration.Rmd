@@ -18,7 +18,7 @@ library(dplyr)
 
 ```{r}
 data <- read_excel("referencetable06072022accessible.xlsx", 
-    sheet = "Table 8", skip = 2)
+    sheet = "Table 8", skip = 3)
 View(data)
 ```
 
