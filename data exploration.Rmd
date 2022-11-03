@@ -9,9 +9,6 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-
 ```{r}
 library(readxl)
 data <- read_excel("referencetable06072022accessible.xlsx", 
@@ -19,4 +16,10 @@ data <- read_excel("referencetable06072022accessible.xlsx",
     skip = 3)
 View(data)
 ```
+
+```{r}
+data$`Count of Deaths` <- as.numeric(data$`Count of Deaths`)
+hist(data$`Count of Deaths`)
+```
+
 
