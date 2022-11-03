@@ -22,8 +22,4 @@ data <- read_excel("referencetable06072022accessible.xlsx",
 View(data)
 ```
 
-```{r}
-data %>% rename(Year = ...2)
-
-```
 
