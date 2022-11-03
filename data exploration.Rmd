@@ -12,12 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(readxl)
 data <- read_excel("referencetable06072022accessible.xlsx", 
-<<<<<<< HEAD
-    sheet = "Table 8",
-    skip = 3)
-=======
-    sheet = "Table 8", skip = 3)
->>>>>>> 190229df537152f86ac61379d873485cf530bdaa
+                   sheet = "Table 8",
+                   skip = 3)
 View(data)
 ```
 
