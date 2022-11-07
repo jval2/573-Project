@@ -21,7 +21,13 @@ library(tidyr)
 data_8 <- read_excel("referencetable06072022accessible.xlsx", 
                    sheet = "Table 8",
                    skip = 3)
-View(data_8)
+head(data_8)
+```
+```{r}
+#rename columns to not have spaces between them; easier to work with
+data_8 <- data_8 %>% rename(Cause_of_death = `Cause of Death`, Age_group = `Age group`, Jabbed = `Vaccination status`, Deaths = `Count of Deaths`)
+data_8$Deaths <- data_8$Deaths %>% as.numeric() #set to numeric
+data_8 <- data_8 %>%  filter(!is.na(Deaths)) #remove NAs
 ```
 
 ```{r}
@@ -30,10 +36,11 @@ hist(data_8$`Count of Deaths`)
 ```
 
 
-
-
 ```{r}
+by_vax_status_age <- data_8 %>% filter(`Cause of Death` == 'All causes') %>% group_by(`Vaccination status`,`Age group`) 
 
+ggplot(by_vax_status_age, aes(x = Month, y = Count of Deaths, color = Age group))+
+  geom_line()
 ```
 
 
