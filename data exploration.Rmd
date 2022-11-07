@@ -57,9 +57,34 @@ data_8 %>% filter(Year == 2022) %>% group_by(Status) %>%
 
 
 
+```{r}
+data_1 <- read_excel("referencetable06072022accessible.xlsx", 
+                   sheet = "Table 1",
+                   skip=3)
+
+```
+
+```{r}
+data_1 <- data_1 %>% rename(Cause_of_death = `Cause of Death`, Status = `Vaccination status`, Deaths = `Count of deaths`)
+data_1$Deaths <- data_1$Deaths %>% as.numeric() #set to numeric
+data_1 <- data_1 %>%  filter(!is.na(Deaths)) #remove NAs
+data_1$Status <- as.factor(data_1$Status)
+data_1$Cause_of_death <- as.factor(data_1$Cause_of_death)
+head(data_1)
+```
+
+
+```{r}
+data_1 %>% filter(Year == 2022,Status == 'Unvaccinated' | Status == 'Ever vaccinated',Cause_of_death == 'All causes') %>% mutate(DeathsPerPersonYrs = Deaths/`Person-years`)
+```
 
 
 
+```{r}
+data_1 %>% filter(Year == 2022,Status == 'Unvaccinated' | Status == 'Ever vaccinated',Cause_of_death == 'All causes') %>% mutate(DeathsPerPersonYrs = Deaths/`Person-years`) %>% 
+  ggplot(aes(x = Month, y = DeathsPerPersonYrs, color=Status))+
+  geom_col()
+```
 
 
 
