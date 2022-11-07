@@ -14,6 +14,7 @@ library(readxl)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(lubridate)
 ```
 
 
@@ -21,27 +22,39 @@ library(tidyr)
 data_8 <- read_excel("referencetable06072022accessible.xlsx", 
                    sheet = "Table 8",
                    skip = 3)
-head(data_8)
 ```
+
+
 ```{r}
 #rename columns to not have spaces between them; easier to work with
-data_8 <- data_8 %>% rename(Cause_of_death = `Cause of Death`, Age_group = `Age group`, Jabbed = `Vaccination status`, Deaths = `Count of Deaths`)
+data_8 <- data_8 %>% rename(Cause_of_death = `Cause of Death`, Age_group = `Age group`, Status = `Vaccination status`, Deaths = `Count of Deaths`)
 data_8$Deaths <- data_8$Deaths %>% as.numeric() #set to numeric
 data_8 <- data_8 %>%  filter(!is.na(Deaths)) #remove NAs
+data_8$Status <- as.factor(data_8$Status)
+data_8$Age_group <- as.factor(data_8$Age_group)
+head(data_8)
 ```
 
 ```{r}
-data_8$`Count of Deaths` <- as.numeric(data_8$`Count of Deaths`)
-hist(data_8$`Count of Deaths`)
+hist(data_8$Deaths)
+```
+
+
+
+
+
+```{r}
+data_8 %>% filter(Year == 2022) %>% group_by(Status) %>% 
+  ggplot(aes(x = Month, y = Deaths, color = Status))+
+  geom_col()
 ```
 
 
 ```{r}
-by_vax_status_age <- data_8 %>% filter(`Cause of Death` == 'All causes') %>% group_by(`Vaccination status`,`Age group`) 
-
-ggplot(by_vax_status_age, aes(x = Month, y = Count of Deaths, color = Age group))+
-  geom_line()
+#data_8$Month <-  match(data_8$Month, month.name)
+#changing months to integers
 ```
+
 
 
 
