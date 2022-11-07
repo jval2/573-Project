@@ -11,20 +11,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(readxl)
-data <- read_excel("referencetable06072022accessible.xlsx", 
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+
+```{r}
+data_8 <- read_excel("referencetable06072022accessible.xlsx", 
                    sheet = "Table 8",
                    skip = 3)
-View(data)
+View(data_8)
 ```
 
 ```{r}
-data$`Count of Deaths` <- as.numeric(data$`Count of Deaths`)
-hist(data$`Count of Deaths`)
+data_8$`Count of Deaths` <- as.numeric(data_8$`Count of Deaths`)
+hist(data_8$`Count of Deaths`)
 ```
 
 
 
 
+```{r}
+
+```
 
 
 
